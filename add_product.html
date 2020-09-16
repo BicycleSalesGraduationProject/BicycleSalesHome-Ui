@@ -12,7 +12,7 @@
 				<span class="modular fl"><i class="add"></i><em>添加产品</em></span>
 				<span class="modular fr"><a href="product_list.html" class="pt-link-btn">产品列表</a></span>
 			</div>
-			<form id="insert_prode">
+			<!-- <form id="insert_prode" enctype ="multipart/form-data" method="post"> -->
 				<table class="list-style">
 					<tr>
 						<td style="text-align:right;width:15%;">产品名称：</td>
@@ -60,31 +60,31 @@
 					<tr>
 						<td style="text-align:right;">推荐至：</td>
 						<td>
-							<input type="checkbox" name="tuijian" id="jingpin" checked="checked" />
+							<input type="radio" name="tuijian" id="jingpin" checked="checked" value="101"/>
 							<label for="jingpin">精品</label>
-							<input type="checkbox" name="tuijian" id="xinpin" />
+							<input type="radio" name="tuijian" id="xinpin" value="102"/>
 							<label for="xinpin">新品</label>
-							<input type="checkbox" name="tuijian" id="rexiao" />
+							<input type="radio" name="tuijian" id="rexiao" value="103"/>
 							<label for="rexiao">热销</label>
-						</td>
-					</tr>
-
-					<tr>
-						<td style="text-align:right;">产品缩图片：</td>
-						<td>
-							<input type="file" id="suoluetu" name="suoluetu" class="hide" />
-							<label for="suoluetu" class="labelBtnAdd">+</label>
-							<!-- <img src="#" width="60" height="60" class="mlr5"/> -->
-							<div id="onephoto"></div>
 						</td>
 					</tr>
 
 					<tr>
 						<td style="text-align:right;">产品主图：</td>
 						<td>
-							<!-- <input type="file"  multiple="multiple" id="chanpinzhutu" name="chanpinzhutu"/> -->
-							<input type="file" multiple="multiple" id="chanpinzhutu" name="chanpinzhutu" class="hide" />
-							<label for="chanpinzhutu" class="labelBtn2">本地上传(最多选择5张)</label>
+							<div id="suoluetudiv">
+								<input type="file" id="suoluetu" name="suoluetu"/>
+							</div>
+							<div id="onephoto"></div>
+						</td>
+					</tr>
+<!--  -->
+					<tr>
+						<td style="text-align:right;">产品缩图：</td>
+						<td>
+							<div id="chanpinzhutudiv">
+								<input type="file" multiple="multiple" id="chanpinzhutu" name="chanpinzhutu"/>
+							</div>
 						</td>
 					</tr>
 					<tr>
@@ -104,12 +104,15 @@
 						</tr> -->
 					<tr>
 						<td style="text-align:right;"></td>
-						<td><input type="button" value="添加产品" class="tdBtn" /></td>
+						<td><input type="button" value="添加产品" class="tdBtn" id="btn" onclick="insertbicycle()"/></td>
 					</tr>
 				</table>
-			</form>
+			<!-- </form> -->
 		</div>
 		<script src="js/jquery.min.js"></script>
+		<script src="js/jquery.cookie.js"></script>
+		<script src="js/data.tools.js"></script>
 		<script src="js/photo.dispose.js"></script>
+		<script src="js/data.dispose.js"></script>
 	</body>
 </html>
