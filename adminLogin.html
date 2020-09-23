@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>后台管理系统</title>
@@ -19,30 +19,35 @@ $(document).ready(function() {
   $('.intro').css({
     'margin-top': -($('.intro').height() /2)
   });
-  $(".loginform input[type='button']").click(function(){
-	  alert("登陆成功，程序对接时将其删除，此处测试！");
-	  location.href="index.html";
-	  });
+  // $(".loginform input[type='button']").click(function(){
+	 //  alert("登陆成功，程序对接时将其删除，此处测试！");
+	 //  location.href="index.html";
+	 //  });
 });
 </script>
 
 </head>
 <body>
-  <section class="loginform">
+  <!-- <section> -->
+  <form onsubmit="return false"  class="loginform">
    <h1>后台管理系统</h1>
    <ul>
     <li>
      <label>账号：</label>
-     <input type="text" class="textBox" placeholder="管理员账号"/>
+     <input type="text" class="textBox" placeholder="管理员账号" id="name" required="required"/>
     </li>
     <li>
      <label>密码：</label>
-     <input type="password" class="textBox" placeholder="登陆密码"/>
+     <input type="password" class="textBox" placeholder="登陆密码" id="password" required="required"/>
     </li>
     <li>
-     <input type="button" value="立即登陆"/>
+     <input type="button" value="立即登陆" onclick="managerLogin()"/>
     </li>
    </ul>
-  </section>
+   </form>
+  <!-- </section> -->
+  <script src="js/data.tools.js"></script>
+  <script src="js/jquery.cookie.js"></script>
+  <script src="js/data.dispose.js"></script>
 </body>
 </html>

@@ -50,7 +50,7 @@ function MySubmit(formName,url,callback) {
 		},
 		error : function(error) {
 			console.log(error);
-			alert("异常！");
+			alert("我去,网咋还断了！");
 		}
 	});
 }
@@ -79,7 +79,7 @@ function MySubmitString(str,url,callback) {
 		},
 		error : function(error) {
 			console.log(error);
-			alert("异常！");
+			alert("我去,网咋还断了！");
 		}
 	});
 }
@@ -107,7 +107,7 @@ function MySubmitFormdata(formdate,url,callback) {
 		},
 		error : function(error) {
 			console.log(error);
-			alert("异常！");
+			alert("我去,网咋还断了！");
 		}
 	});
 }

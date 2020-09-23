@@ -10,39 +10,42 @@
   <div class="page-title">
     <span class="modular fl"><i class="edit_user"></i><em>编辑用户资料</em></span>
   </div>
+  <form onsubmit="return false">
   <table class="list-style">
    <tr>
     <td style="width:15%;text-align:right;">用户名：</td>
-    <td><input type="text" class="textBox length-middle" value="DeathGhost"/></td>
+    <td><input type="text" class="textBox length-middle" value="" id="username" required="required"/></td>
    </tr>
    <tr>
-    <td style="text-align:right;">电子邮件：</td>
-    <td><input type="text" class="textBox length-middle" value="DeathGhost@sina.cn"/></td>
+    <td style="text-align:right;">身份证号：</td>
+    <td><input type="text" class="textBox length-middle" value="" id="idnumber" required="required"/></td>
    </tr>
    <tr>
-    <td style="text-align:right;">手机号码：</td>
-    <td><input type="text" class="textBox length-middle" value="18309275673"/></td>
-   </tr>
-   <tr>
-    <td style="text-align:right;">可用资金：</td>
-    <td>
-     <input type="text" class="textBox length-short" value="5000000" disabled="disabled"/>
-     <span>元</span>
-    </td>
+    <td style="text-align:right;">邮箱：</td>
+    <td><input type="text" class="textBox length-middle" value="" id="email" required="required"/></td>
    </tr>
    <tr>
     <td style="text-align:right;">重置密码：</td>
-    <td><input type="password" class="textBox length-middle" value="123456"/></td>
+    <td><input type="password" class="textBox length-middle" value="" id="pwd" required="required"/></td>
    </tr>
    <tr>
     <td style="text-align:right;">确认密码：</td>
-    <td><input type="password" class="textBox length-middle" value="123456"/></td>
+    <td><input type="password" class="textBox length-middle" value="" id="repwd" required="required"/></td>
    </tr>
    <tr>
     <td style="text-align:right;"></td>
-    <td><input type="submit" class="tdBtn" value="更新保存"/></td>
+    <td><input type="submit" class="tdBtn" value="更新保存" onclick="updateUser()"/></td>
    </tr>
   </table>
+  </form>
  </div>
+ <script src="js/jquery.min.js"></script>
+ <script src="js/data.tools.js"></script>
+ <script src="js/jquery.cookie.js"></script>
+ <script src="js/jquery.md5.js"></script>
+ <script src="js/data.dispose.js"></script>
+ <script>
+	 updateUserDetail();
+ </script>
 </body>
 </html>

@@ -17,70 +17,24 @@
 			</div>
 			<div class="operate">
 				<form>
-					<select class="inline-select">
-						<option>姓氏</option>
-						<option>名字</option>
-						<option>用户名</option>
+					<select class="inline-select" id="userselect">
+						<option value="username">用户名</option>
+						<option value="sex">性别</option>
+						<option value="age">年龄</option>
 					</select>
-					<input type="text" class="textBox length-long" placeholder="输入用户信息..." />
-					<input type="button" value="查询" class="tdBtn" />
+					<input type="text" class="textBox length-long" id="likevalue" placeholder="请输入信息...." />
+					<input type="button" value="查询" class="tdBtn" onclick="queryUserMessageLike()"/>
 				</form>
 			</div>
-			<table class="list-style Interlaced">
-				<tr>
-					<th>ID编号</th>
-					<th>姓氏</th>
-					<th>名字</th>
-					<th>用户名</th>
-					<th>邮箱</th>
-					<th>
-						密码
-					</th>
-
-					<th>操作</th>
-				</tr>
-				<tr>
-					<td>
-						<span>
-     <input type="checkbox" class="middle children-checkbox"/>
-     <i>0</i>
-     </span>
-					</td>
-					<td class="center pic-area"><img src="#" class="thumbnail" /></td>
-					<td class="td-name">
-						<span class="ellipsis td-name block">111</span>
-					</td>
-					<td class="center">
-						<span>
-      
-      <em>0</em>
-     </span>
-					</td>
-					<td class="center">
-						<span>
-      
-      <em>0</em>
-     </span>
-					</td>
-					<td class="center">
-						<span>
-      
-      <em>0</em>
-     </span>
-					</td>
-					<td class="center">
-						<a href="user_update.html" title="编辑"><img src="images/icon_edit.gif" /></a>
-						<a title="删除"><img src="images/icon_drop.gif" /></a>
-					</td>
-				</tr>
-			</table>
+			<div id="alluserlist"></div>
+			
 			<!-- BatchOperation -->
 			<div style="overflow:hidden;">
 				<!-- Operation -->
 				<div class="BatchOperation fl">
-					<input type="checkbox" id="del" />
-					<label for="del" class="btnStyle middle">全选</label>
-					<input type="button" value="批量删除" class="btnStyle" />
+					<!-- <input type="checkbox" id="del" />
+					<label for="del" class="btnStyle middle">全选</label> -->
+					<input type="button" value="批量删除" class="btnStyle" onclick="setUserListStatus()"/>
 				</div>
 				<!-- turn page -->
 				<div class="turnPage center fr">
@@ -90,6 +44,15 @@
 				</div>
 			</div>
 		</div>
+		<script src="js/data.tools.js"></script>
+		<script src="js/jquery.cookie.js"></script>
+		<script src="js/data.dispose.js"></script>
+		<script>
+			getAllUsermessage();
+			$('body').on('change', '#userliseselect', function() {
+				alert($("#userliseselect option:selected").val());
+			})
+		</script>
 	</body>
 
 </html>

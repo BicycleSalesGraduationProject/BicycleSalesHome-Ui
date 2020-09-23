@@ -1,79 +1,27 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<title>产品列表</title>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link href="style/adminStyle.css" rel="stylesheet" type="text/css" />
-</head>
-<body>
- <div class="wrap">
-  <div class="page-title">
-    <span class="modular fl"><i class="add"></i><em>产品详情</em></span>
-    <span class="modular fr"><a href="product_list.html" class="pt-link-btn">产品列表</a></span>
-  </div>
-  <form action="product_list.html">
-  <table class="list-style">
-   <tr>
-    <td style="text-align:right;width:15%;">产品名称：</td>
-    <td><input type="text" class="textBox length-long" style="border:0px;"/></td>
-   </tr>
-   <tr>
-    <td style="text-align:right;">产品分类：</td>
-    <td>
-     <input type="text" class="textBox length-short" style="border:0px;"/>    
-    </td>
-   </tr>
-   <tr>
-    <td style="text-align:right;">市场价：</td>
-    <td>
-     <input type="text" class="textBox length-short" style="border:0px;"/>
-     <span>元</span>
-    </td>
-   </tr>
-   <tr>
-    <td style="text-align:right;">会员价：</td>
-    <td>
-     <input type="text" class="textBox length-short" style="border:0px;"/>
-     <span>元</span>
-    </td>
-   </tr>
-   <tr>
-    <td style="text-align:right;">库存：</td>
-    <td>
-     <input type="text" class="textBox length-short" style="border:0px;"/>
-     <span>件</span>
-    </td>
-   </tr>
-   
-   <tr>
-    <td style="text-align:right;">产品描述：</td>
-    <td><input type="text" class="textBox length-long" style="border:0px;"/></td>
-   </tr>
-   
-   <tr>
-    <td style="text-align:right;">产品缩图片：</td>
-    <td>
-     <img src="#" width="60" height="60" class="mlr5"/>
-    </td>
-   </tr>
-   
-   <tr>
-    <td style="text-align:right;">产品主图：</td>
-    <td>
-     <img src="#" width="80" height="80"/>
-     <img src="#" width="80" height="80"/>
-     <img src="#" width="80" height="80"/>
-     <img src="#" width="80" height="80"/>
-     <img src="#" width="80" height="80"/>
-    </td>
-   </tr>
-   
-   <tr>
-    <td style="text-align:right;">产品详情：</td>
-    <td><textarea class="textarea" style="border:0px;">啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</textarea></td>
-   </tr>
-  </table>
-  </form>
- </div>
-</body>
+	<head>
+		<title>产品列表</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link href="style/adminStyle.css" rel="stylesheet" type="text/css" />
+	</head>
+	<body>
+		<div class="wrap">
+			<div class="page-title">
+				<span class="modular fl"><i class="add"></i><em>产品详情</em></span>
+				<span class="modular fr"><a href="product_list.html" class="pt-link-btn">产品列表</a></span>
+			</div>
+			<form action="product_list.html">
+				<div id="productdetial">
+				</div>
+			</form>
+		</div>
+		<script src="js/jquery.min.js"></script>
+		<script src="js/data.tools.js"></script>
+		<script src="js/jquery.cookie.js"></script>
+		<script src="js/data.dispose.js"></script>
+		<script>
+			queryBicycleDetail();
+		</script>
+	</body>
 </html>
