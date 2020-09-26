@@ -76,12 +76,12 @@ function MySubmitString(str,url,callback) {
 		},
 		async:false,
 		beforeSend: function () {
-			$("#load").css('display','block');
-			$("#load1").css('display','block');
+			$("#load").css('display','block');//order_list.html
+			$("#load1").css('display','block');//order_list.html
 		},
 		complete: function () {
-		    $("#load").remove();
-			$("#load1").remove();
+		    $("#load").remove();//order_list.html
+			$("#load1").remove();//order_list.html
 		},
 		success: function (result) {
 			console.log(result);//打印服务端返回的数据(调试用)
@@ -90,8 +90,8 @@ function MySubmitString(str,url,callback) {
 		error : function(error) {
 			console.log(error);
 			alert("我去,网咋还断了！");
-			$("#load").remove();
-			$("#load1").remove();
+			$("#load").remove();//order_list.html
+			$("#load1").remove();//order_list.html
 		}
 	});
 }
