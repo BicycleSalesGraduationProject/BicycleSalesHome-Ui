@@ -5,10 +5,9 @@ var cookie = $.cookie("managerjson");
 if (cookie != null && cookie != '') {
 	var mydata = $.parseJSON(cookie);
 	window.sessionStorage.setItem("managerjson", cookie);
-	$("#managername").html("管理员："+mydata.administrator.name);
-}
-else{
-	if("http://127.0.0.1:8848/BicycleSalesHome-Ui/adminLogin.html"!=window.location.href){
+	$("#managername").html("管理员：" + mydata.administrator.name);
+} else {
+	if ("http://127.0.0.1:8848/BicycleSalesHome-Ui/adminLogin.html" != window.location.href) {
 		alert("请先登录！");
 		parent.location.href = "adminLogin.html";
 	}
@@ -414,6 +413,18 @@ function updatePassword() {
 }
 
 /**
+ * 设置cookie
+ * @param {Object} key
+ * @param {Object} value
+ * @param {Object} t
+ */
+function setCookie(key, value, t) {
+	var oDate = new Date();
+	oDate.setDate(oDate.getDate() + t);
+	document.cookie = key + "=" + value + "; expires=" + oDate.toDateString() + "; path=/";
+}
+
+/**
  * 获取cookie
  * @param {Object} name
  */
@@ -434,7 +445,7 @@ function delCookie(name) {
 	exp.setTime(exp.getTime() - 1);
 	var cval = getCookie(name);
 	if (cval != null)
-		document.cookie = name + "=" + cval + ";expires=" + exp.toGMTString()+"; path=/";
+		document.cookie = name + "=" + cval + ";expires=" + exp.toGMTString() + "; path=/";
 }
 
 /**
@@ -592,7 +603,7 @@ function recoverBicycle(BicycleId) {
 			if (data.msg == "ok") {
 				alert("恢复成功！");
 				queryAllBicycleByName();
-				window.location.href="product_list.html";
+				window.location.href = "product_list.html";
 			} else {
 				alert("恢复失败！");
 			}
@@ -621,7 +632,7 @@ function recoverListBicycle() {
 			if (data.msg == "ok") {
 				alert("批量恢复成功！");
 				queryAllBicycleByName();
-				window.location.href="product_list.html";
+				window.location.href = "product_list.html";
 			} else {
 				alert("批量恢复失败！");
 			}
@@ -645,7 +656,7 @@ function removeBicycle(BicycleId) {
 			if (data.msg == "ok") {
 				alert("彻底删除成功！");
 				queryAllBicycleByName();
-				window.location.href="recycle_bin.html";
+				window.location.href = "recycle_bin.html";
 			} else {
 				alert("彻底删除失败！");
 			}
@@ -675,7 +686,7 @@ function removeListBicycle() {
 			if (data.msg == "ok") {
 				alert("批量彻底删除成功！");
 				queryAllBicycleByName();
-				window.location.href="recycle_bin.html";
+				window.location.href = "recycle_bin.html";
 			} else {
 				alert("批量彻底删除失败！");
 			}
@@ -691,27 +702,23 @@ function removeListBicycle() {
 function queryAllUserMessage() {
 	var json = {};
 	json['pageIndex'] = "";
-	if($("#likevalue").val()!=null&&$("#likevalue").val()!=''){
-		if($("#userselect").val()=='username'){
+	if ($("#likevalue").val() != null && $("#likevalue").val() != '') {
+		if ($("#userselect").val() == 'username') {
 			json['username'] = $("#likevalue").val();
-		}
-		else{
+		} else {
 			json['username'] = "";
 		}
-		if($("#userselect").val()=='sex'){
+		if ($("#userselect").val() == 'sex') {
 			json['sex'] = $("#likevalue").val();
-		}
-		else{
+		} else {
 			json['sex'] = "";
 		}
-		if($("#userselect").val()=='age'){
+		if ($("#userselect").val() == 'age') {
 			json['age'] = $("#likevalue").val();
-		}
-		else{
+		} else {
 			json['age'] = "";
 		}
-	}
-	else{
+	} else {
 		json['username'] = "";
 		json['sex'] = "";
 		json['age'] = "";
@@ -755,7 +762,7 @@ function getAllUsermessage() {
 			//遍历数据
 			var array = mydata.alluser;
 			$.each(array, function(index, element) {
-				if(element['delstate']>0){
+				if (element['delstate'] > 0) {
 					str += "<tr>" +
 						"	<td>" +
 						"		<span>" +
@@ -799,7 +806,7 @@ function getAllUsermessage() {
 						"	<td class='center'>" +
 						"		<a href='user_update.html' onclick='getUserUpdate(" + (index + 1) +
 						")' title='编辑'><img src='images/icon_edit.gif' /></a>" +
-						"		<a title='删除' class='mya' id='"+element['userid']+"'><img src='images/icon_drop.gif' /></a>" +
+						"		<a title='删除' class='mya' id='" + element['userid'] + "'><img src='images/icon_drop.gif' /></a>" +
 						"	</td>" +
 						"</tr>";
 				}
@@ -817,10 +824,10 @@ function getAllUsermessage() {
 /**
  * 模糊查询
  */
-function queryUserMessageLike(){
+function queryUserMessageLike() {
 	queryAllUserMessage();
 	getAllUsermessage();
-	window.location.href="user_list.html";
+	window.location.href = "user_list.html";
 }
 
 /**
@@ -862,7 +869,8 @@ function updateUserDetail() {
  * 修改用户信息
  */
 function updateUser() {
-	if($("#username").val()!=""&&$("#idnumber").val()!=""&&$("#email").val()!=""&&$("#pwd").val()!=""&&$("#repwd").val()!=""){
+	if ($("#username").val() != "" && $("#idnumber").val() != "" && $("#email").val() != "" && $("#pwd").val() != "" && $(
+			"#repwd").val() != "") {
 		var UserNo = window.sessionStorage.getItem("updateUserNo");
 		var my = window.sessionStorage.getItem("alluser");
 		var json = {};
@@ -872,58 +880,52 @@ function updateUser() {
 				if (UserNo != null && UserNo != '') {
 					var array = mydata.alluser;
 					var flag = 0
-					if($("#username").val()!=""&&$("#username").val()!=array[UserNo - 1].name){
+					if ($("#username").val() != "" && $("#username").val() != array[UserNo - 1].name) {
 						json['name'] = $("#username").val();
-						flag+=1;
-					}
-					else{
+						flag += 1;
+					} else {
 						json['name'] = "";
 					}
-					if($("#idnumber").val()!=""&&$("#idnumber").val()!=array[UserNo - 1].idnumber){
+					if ($("#idnumber").val() != "" && $("#idnumber").val() != array[UserNo - 1].idnumber) {
 						json['idnumber'] = $("#idnumber").val();
-						flag+=1;
-					}
-					else{
+						flag += 1;
+					} else {
 						json['idnumber'] = "";
 					}
-					if($("#email").val()!=""&&$("#email").val()!=array[UserNo - 1].email){
+					if ($("#email").val() != "" && $("#email").val() != array[UserNo - 1].email) {
 						json['email'] = $("#email").val();
-						flag+=1;
-					}
-					else{
+						flag += 1;
+					} else {
 						json['email'] = "";
 					}
-					if($("#pwd").val()!=array[UserNo - 1].password||$("#repwd").val()!=array[UserNo - 1].password){
-						if($("#pwd").val()!=$("#repwd").val()){
+					if ($("#pwd").val() != array[UserNo - 1].password || $("#repwd").val() != array[UserNo - 1].password) {
+						if ($("#pwd").val() != $("#repwd").val()) {
 							alert("两次密码不一致");
-						}
-						else{
+						} else {
 							json['password'] = $("#pwd").val();
-							flag+=1;
+							flag += 1;
 						}
-					}
-					else{
+					} else {
 						json['password'] = "";
 					}
 					json['userstate'] = "";
 					json['userid'] = array[UserNo - 1].userid;
-					if(flag>0){
+					if (flag > 0) {
 						url = "updateUser";
 						MySubmitString(JSON.stringify(json), url, function(data) {
-							if(data!=null&&data.msg=="ok"){
+							if (data != null && data.msg == "ok") {
 								queryAllUserMessage();
 								getAllUsermessage();
-								window.location.href="user_list.html";
+								window.location.href = "user_list.html";
 								alert("用户信息修改成功！");
-							}
-							else{
+							} else {
 								alert("用户信息修改失败！");
 							}
 						})
 					}
 				}
-			} 
-		} 
+			}
+		}
 	}
 }
 
@@ -936,15 +938,14 @@ $('body').on('click', '.mya', function() {
 	json['delstate'] = 0;
 	json['userstate'] = 0;
 	json['userid'] = $(this).attr("id");
-	var url="setUserState";
+	var url = "setUserState";
 	MySubmitString(JSON.stringify(json), url, function(data) {
-		if(data!=null&&data.msg=="ok"){
+		if (data != null && data.msg == "ok") {
 			queryAllUserMessage();
 			getAllUsermessage();
-			window.location.href="user_list.html";
+			window.location.href = "user_list.html";
 			alert("用户删除成功！");
-		}
-		else{
+		} else {
 			alert("用户删除失败！");
 		}
 	})
@@ -954,7 +955,7 @@ $('body').on('click', '.mya', function() {
 /**
  * 批量修改用户状态（假删除）
  */
-function setUserListStatus(){
+function setUserListStatus() {
 	var json = {};
 	var str = "";
 	$.each($('input:checkbox'), function() {
@@ -972,7 +973,7 @@ function setUserListStatus(){
 				alert("批量删除成功！");
 				queryAllUserMessage();
 				getAllUsermessage();
-				window.location.href="user_list.html";
+				window.location.href = "user_list.html";
 			} else {
 				alert("批量删除失败！");
 			}
@@ -985,20 +986,19 @@ function setUserListStatus(){
 /**
  * 恢复用户
  */
-function recoverUser(userid){
+function recoverUser(userid) {
 	var json = {};
 	json['delstate'] = 1;
 	json['userstate'] = 1;
 	json['userid'] = userid;
-	var url="setUserState";
+	var url = "setUserState";
 	MySubmitString(JSON.stringify(json), url, function(data) {
-		if(data!=null&&data.msg=="ok"){
+		if (data != null && data.msg == "ok") {
 			queryAllUserMessage();
 			getAllUsermessage();
-			window.location.href="user_return.html";
+			window.location.href = "user_return.html";
 			alert("用户恢复成功！");
-		}
-		else{
+		} else {
 			alert("用户恢复失败！");
 		}
 	})
@@ -1007,7 +1007,7 @@ function recoverUser(userid){
 /**
  * 批量恢复用户
  */
-function recoverListUser(){
+function recoverListUser() {
 	var json = {};
 	var str = "";
 	$.each($('input:checkbox'), function() {
@@ -1025,7 +1025,7 @@ function recoverListUser(){
 				alert("批量恢复成功！");
 				queryAllUserMessage();
 				getAllUsermessage();
-				window.location.href="user_return.html";
+				window.location.href = "user_return.html";
 			} else {
 				alert("批量恢复失败！");
 			}
@@ -1039,18 +1039,17 @@ function recoverListUser(){
  * 彻底删除用户
  * @param {Object} userid
  */
-function delUser(userid){
+function delUser(userid) {
 	var json = {};
 	json['userid'] = userid;
-	var url="deleteUser";
+	var url = "deleteUser";
 	MySubmitString(JSON.stringify(json), url, function(data) {
-		if(data!=null&&data.msg=="ok"){
+		if (data != null && data.msg == "ok") {
 			queryAllUserMessage();
 			getAllUsermessage();
-			window.location.href="user_return.html";
+			window.location.href = "user_return.html";
 			alert("成功彻底删除用户！");
-		}
-		else{
+		} else {
 			alert("彻底删除用户失败！");
 		}
 	})
@@ -1059,7 +1058,7 @@ function delUser(userid){
 /**
  * 批量彻底删除用户
  */
-function delListUser(){
+function delListUser() {
 	var json = {};
 	var str = "";
 	$.each($('input:checkbox'), function() {
@@ -1075,7 +1074,7 @@ function delListUser(){
 				alert("批量彻底删除成功！");
 				queryAllUserMessage();
 				getAllUsermessage();
-				window.location.href="user_return.html";
+				window.location.href = "user_return.html";
 			} else {
 				alert("批量彻底删除失败！");
 			}
@@ -1112,7 +1111,7 @@ function getAllDelUsermessage() {
 			//遍历数据
 			var array = mydata.alluser;
 			$.each(array, function(index, element) {
-				if(element['delstate']==0){
+				if (element['delstate'] == 0) {
 					str += "<tr>" +
 						"	<td>" +
 						"		<span>" +
@@ -1165,8 +1164,9 @@ function getAllDelUsermessage() {
 	}
 }
 
-function insertUser(){
-	if($("#username").val()!=""&&$("#idnumber").val()!=""&&$("#email").val()!=""&&$("#pwd").val()!=""&&$("#repwd").val()!=""){
+function insertUser() {
+	if ($("#username").val() != "" && $("#idnumber").val() != "" && $("#email").val() != "" && $("#pwd").val() != "" && $(
+			"#repwd").val() != "") {
 		var UserNo = window.sessionStorage.getItem("updateUserNo");
 		var my = window.sessionStorage.getItem("alluser");
 		var json = {};
@@ -1176,74 +1176,409 @@ function insertUser(){
 				if (UserNo != null && UserNo != '') {
 					var array = mydata.alluser;
 					var flag = 0
-					if($("#username").val()!=""){
+					if ($("#username").val() != "") {
 						json['name'] = $("#username").val();
-						flag+=1;
-					}
-					else{
+						flag += 1;
+					} else {
 						json['name'] = "";
 					}
-					if($("#idnumber").val()!=""){
+					if ($("#idnumber").val() != "") {
 						json['idnumber'] = $("#idnumber").val();
-						flag+=1;
-					}
-					else{
+						flag += 1;
+					} else {
 						json['idnumber'] = "";
 					}
-					if($("#email").val()!=""){
+					if ($("#email").val() != "") {
 						json['email'] = $("#email").val();
-						flag+=1;
-					}
-					else{
+						flag += 1;
+					} else {
 						json['email'] = "";
 					}
-					if($("#pwd").val()!=$("#repwd").val()){
+					if ($("#pwd").val() != $("#repwd").val()) {
 						alert("两次密码不一致");
-					}
-					else{
+					} else {
 						json['password'] = $("#pwd").val();
-						flag+=1;
+						flag += 1;
 					}
-					if(flag>0){
+					if (flag > 0) {
 						url = "insertUser";
 						MySubmitString(JSON.stringify(json), url, function(data) {
-							if(data!=null&&data.msg=="ok"){
+							if (data != null && data.msg == "ok") {
 								queryAllUserMessage();
 								getAllUsermessage();
-								window.location.href="user_list.html";
+								window.location.href = "user_list.html";
 								alert("用户信息添加成功！");
-							}
-							else if(data!=null&&data.msg=="no_3"){
+							} else if (data != null && data.msg == "no_3") {
 								alert("该邮箱已被注册，请更换！");
-							}
-							else{
+							} else {
 								alert("用户信息添加失败！");
 							}
 						})
 					}
 				}
-			} 
-		} 
+			}
+		}
 	}
 }
 
 /**
  * 管理员登录
  */
-function managerLogin(){
-	if($("#name").val()!=null&&$("#name").val()!=''&&$("#password").val()!=null&&$("#password").val()!=''){
+function managerLogin() {
+	if ($("#name").val() != null && $("#name").val() != '' && $("#password").val() != null && $("#password").val() != '') {
 		var json = {};
 		json['name'] = $("#name").val();
 		json['password'] = $("#password").val();
 		var url = "managerLogin";
 		MySubmitString(JSON.stringify(json), url, function(data) {
-			if(data!=null&&data.msg=="ok"){
-				$.cookie("managerjson", JSON.stringify(data), { path : "/" });
-				window.location.href="index.html";
-			}
-			else{
+			if (data != null && data.msg == "ok") {
+				// $.cookie("managerjson", JSON.stringify(data), { path : "/" });
+				setCookie("managerjson", JSON.stringify(data), 60 * 60 * 24);
+				window.location.href = "index.html";
+			} else {
 				alert("用户名或密码错误！");
 			}
 		})
 	}
+}
+
+/**
+ * 查询所有用户反馈
+ */
+function queryFeedBack() {
+	var json = {};
+	json['pageIndex'] = "";
+	var url = "queryUserFeedBack";
+	MySubmitString(JSON.stringify(json), url, function(data) {
+		if (data != null && data.msg == "ok") {
+			window.sessionStorage.setItem("allUserFeedBack", JSON.stringify(data));
+		} else {
+			alert("未查询到任何数据！");
+		}
+	})
+}
+
+/**
+ * 查询渲染用户反馈
+ */
+function getFeedBack() {
+	var allUserFeedBack = window.sessionStorage.getItem("allUserFeedBack");
+	if (allUserFeedBack != null && allUserFeedBack != '') {
+		var mydata = $.parseJSON(allUserFeedBack);
+		var str = "<table class='list-style Interlaced'>" +
+			"   <tr>" +
+			"	<th>编号</th>" +
+			"    <th>姓名</th>" +
+			"    <th>联系电话</th>" +
+			"    <th>电子邮箱</th>" +
+			"    <th>存在的问题</th>" +
+			"    <th>留言</th>" +
+			"    <th>反馈时间</th>" +
+			"   </tr>";
+		var array = mydata.allfeedback;
+		$.each(array, function(index, element) {
+			str += "   <tr>" +
+				"	<td class='center'>" + (index + 1) + "</td>" +
+				"    <td class='center'>" + element['name'] + "</td>" +
+				"    <td class='center'>" + element['tel'] + "</td>" +
+				"    <td class='center'>" + element['email'] + "</td>" +
+				"    <td class='center'>" + element['issue'] + "</td>" +
+				"    <td class='center'>" + element['voicemessage'] + "</td>" +
+				"    <td class='center'>" + ChangeDateFormat(element['createtime'].time) + "</td>" +
+				"   </tr>";
+		})
+		str += "  </table>";
+		$("#userfeedback").html(str);
+	} else {
+		alert("未查询到任何数据！");
+	}
+}
+
+/**
+ * 查询该用户的所有订单数据
+ */
+function queryAllOrder() {
+	var json = {};
+	var managerjson = window.sessionStorage.getItem("managerjson");
+	if (managerjson != null && managerjson != '') {
+		json['pageIndex'] = "";
+		var url = "queryAllOrder";
+		MySubmitString(JSON.stringify(json), url, function(data) {
+			if (data != null && data.msg == 'ok') {
+				window.sessionStorage.setItem("allOrderForm", JSON.stringify(data));
+			} else {
+				alert("未查询任何订单信息！");
+			}
+		})
+	} else {
+		alert("请先登录！");
+	}
+}
+
+/**
+ * 渲染所有订单
+ */
+function getAllOrder() {
+	var allOrderForm = window.sessionStorage.getItem("allOrderForm");
+	if (allOrderForm != null && allOrderForm != '') {
+		var mydata = $.parseJSON(allOrderForm);
+		var str = "<table class='list-style Interlaced'>" +
+			"   <tr>" +
+			"	<th class='thbox'></th>" +
+			"    <th>序号</th>" +
+			"    <th>订单编号</th>" +
+			"    <th>下单时间</th>" +
+			"    <th>收件人</th>" +
+			"    <th>订单金额</th>" +
+			"	<th>支付状态</th>" +
+			"    <th>订单状态</th>" +
+			"    <th class='thchaozuo'>操作</th>" +
+			"   </tr>";
+		var array = mydata.allorderform;
+		var i = 0
+		$.each(array, function(index, element) {
+			if(element['orderformstate']>=0){
+				i = i+1;
+				var paystatus = "";
+				var sendstaus = "";
+				if(element['orderformstate']==0){
+					sendstaus="订单取消";
+				}
+				else if(element['orderformstate']==3){
+					sendstaus="未发货";
+				}
+				else if(element['orderformstate']==4){
+					sendstaus="已发货";
+				}
+				else if(element['orderformstate']==5){
+					sendstaus="退货";
+				}
+				else if(element['orderformstate']==7){
+					sendstaus="配货中";
+				}
+				else if(element['orderformstate']==8){
+					sendstaus="配送中";
+				}
+				else{
+					sendstaus="完成";
+				}
+				if(element['paymoneystate']==1){
+					paystatus="未付款";
+				}
+				else{
+					paystatus="已付款";
+				}
+				str+="   <tr>" +
+				"	<td class='box'><input type='checkbox' value='"+element['orderno']+"'/></td>" +
+				"	<td class='center'>"+i+"</td>" +
+				"    <td class='center'>" +
+				"     <a href='javascript:void(0);' onclick='getOrderFormDetailByNO("+(index+1)+")'>"+element['orderno']+"</a>" +
+				"    </td>" +
+				"    <td class='center'>" +
+				"     <span class='block'>"+ChangeDateFormat(element['createtime'].time)+"</span>" +
+				"    </td>" +
+				"    <td class='center'>" +
+				"		<span>"+element['user'].name+"["+element['address'].tel+"]</span><br />" +
+				"		<span>"+element['address'].adsdetails+"</span>" +
+				"    </td>" +
+				"    <td class='center'>" +
+				"     <span><i>$</i><b>"+element['totalmoney']+"</b></span>" +
+				"    </td>" +
+				"    <td class='center'>" +
+				"     <span>"+paystatus+"</span>" +
+				"    </td>" +
+				"	<td class='center'>" +
+				"	 <span>"+sendstaus+"</span>" +
+				"	</td>" +
+				"    <td class='center chaozuo'>" +
+				"     <a href='javascript:void(0);' class='inline-block' title='查看订单' onclick='getOrderFormDetailByNO("+(index+1)+")'><img src='images/icon_view.gif'/></a>" +
+				"     <a class='inline-block' title='删除订单' onclick='setOrderFormStatus(\""+element['orderno']+"\",-1,\"删除\")'><img src='images/icon_trash.gif'/></a>" +
+				"    </td>" +
+				"   </tr>";
+			}
+		})
+		str += "  </table>";
+		$("#MyOrderForm").html(str);
+	} else {
+		alert("未查询到任何数据！");
+	}
+}
+
+/**
+ * 通过OrderFormNO获取相应订单详情
+ * @param {Object} OrderFormNO
+ */
+function getOrderFormDetailByNO(OrderFormNO){
+	var allOrderForm = window.sessionStorage.getItem("allOrderForm");
+	if (allOrderForm != null && allOrderForm != '') {
+		var mydata = $.parseJSON(allOrderForm);
+		var arrayone = mydata.allorderform[OrderFormNO-1];
+		window.sessionStorage.setItem("oneOrderForm",JSON.stringify(arrayone));
+		window.location.href = "order_detail.html";
+	}
+	else {
+		alert("未查询到任何数据！");
+	}
+}
+
+/**
+ * 查询渲染订单详情
+ */
+function getOrderFormDetail(){
+	var oneOrderForm = window.sessionStorage.getItem("oneOrderForm");
+	if(oneOrderForm!=null&&oneOrderForm!=''){
+		var mydata = $.parseJSON(oneOrderForm);
+		$("#name").html(mydata.user.name);
+		$("#tel").html(mydata.address.tel);
+		$("#address").html(mydata.address.adsdetails);
+		$("#createtime").html(ChangeDateFormat(mydata.createtime.time));
+		$("#orderno").html(mydata.orderno);
+		var paystatus = "";
+		var sendstaus = "";
+		if(mydata.orderformstate==0){
+			sendstaus="订单取消";
+		}
+		else if(mydata.orderformstate==3){
+			sendstaus="未发货";
+		}
+		else if(mydata.orderformstate==4){
+			sendstaus="已发货";
+		}
+		else if(mydata.orderformstate==5){
+			sendstaus="退货";
+		}
+		else if(mydata.orderformstate==7){
+			sendstaus="配货中";
+		}
+		else if(mydata.orderformstate==8){
+			sendstaus="配送中";
+		}
+		else{
+			sendstaus="完成";
+		}
+		if(mydata.paymoneystate==1){
+			paystatus="未付款";
+		}
+		else{
+			paystatus="已付款";
+		}
+		$("#paystatus").html(paystatus);
+		$("#orderformstatus").html(sendstaus);
+		var str="<table class='list-style'>" + 
+				"     <tr>" + 
+				"      <th>商品图片</th>" + 
+				"      <th>产品</th>" + 
+				"      <th>单价</th>" + 
+				"      <th>数量</th>" + 
+				"      <th>小计</th>" + 
+				"     </tr>";
+			var array = mydata.orderFormDetails;
+			$.each(array, function(index, element) {
+				str+="     <tr>" + 
+				"      <td height='60px' width='60px'><img src='"+element["bicycle"].firstphoto+"' class='thumbnail' height='60px' width='60px'/></td>" + 
+				"      <td>"+element["bicycle"].name+"</td>" + 
+				"      <td>" + 
+				"       <span>" + 
+				"        <i>$</i>" + 
+				"        <em>"+element["bicycle"].money+"</em>" + 
+				"       </span>" + 
+				"      </td>" + 
+				"      <td>"+element["num"]+"</td>" + 
+				"      <td>" + 
+				"       <span>" + 
+				"        <i>$</i>" + 
+				"        <em>"+element["money"]+"</em>" + 
+				"       </span>" + 
+				"      </td>" + 
+				"     </tr>";
+			})
+			str+="     <tr>" + 
+			"      <td colspan='5'>" + 
+			"       <div class='fr'>" + 
+			"        <span style='font-size:15px;font-weight:bold;'>" + 
+			"         <i>订单共计金额：$</i>" + 
+			"         <b>"+mydata.totalmoney+"</b>" + 
+			"        </span>" + 
+			"       </div>" + 
+			"      </td>" + 
+			"     </tr>" + 
+			"    </table>";
+			$("#myOrderDetail").html(str);
+	}
+	else{
+		alert("未查询到任何数据！");
+	}
+}
+
+/**
+ * 打印订单
+ */
+function printOrderForm() {
+	$(".thbox").attr("style", "display:none");
+	$(".box").attr("style", "display:none");
+	$(".thchaozuo").attr("style", "display:none");
+	$(".chaozuo").attr("style", "display:none");
+	$("#MyOrderForm").jqprint();
+	$(".thbox").attr("style", "display:");
+	$(".box").attr("style", "display:");
+	$(".thchaozuo").attr("style", "display:");
+	$(".chaozuo").attr("style", "display:");
+}
+
+/**
+ * 打印订单详情
+ */
+function printOrderFormDetail() {
+	$("#MyOrderFormDetail").jqprint();
+}
+
+/**
+ * 设置状态
+ * @param {Object} orderno
+ * @param {Object} status
+ * @param {Object} mymsg
+ */
+function setOrderFormStatus(orderno,status,mymsg){
+	var json = {};
+	json['orderformstate'] = status;
+	json['paymoneystate'] = "";
+	json['orderno'] = orderno;
+	var url = "setOrderStatus";
+	MySubmitString(JSON.stringify(json), url, function(data) {
+		if (data != null && data.msg == 'ok') {
+			alert(mymsg+"成功！");
+			queryAllOrder();
+			getAllOrder();
+		} else {
+			alert(mymsg+"失败！");
+		}
+	})
+}
+
+/**
+ * 批量设置状态
+ * @param {Object} status
+ * @param {Object} mymsg
+ */
+function setListOrderFormStatus(status,mymsg){
+	var json = {};
+	json['orderformstate'] = status;
+	json['paymoneystate'] = "";
+	var str = "";
+	$.each($('input:checkbox'), function() {
+		if (this.checked) {
+			str += $(this).val() + ";";
+		}
+	});
+	json['ordernos'] = str;
+	var url = "setOrderListStatus";
+	MySubmitString(JSON.stringify(json), url, function(data) {
+		if (data != null && data.msg == 'ok') {
+			alert(mymsg+"成功！");
+			queryAllOrder();
+			getAllOrder();
+		} else {
+			alert(mymsg+"失败！");
+		}
+	})
 }

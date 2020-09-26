@@ -38,6 +38,7 @@ function MySubmit(formName,url,callback) {
 		type: "POST",//方法类型
 		dataType: "json",//预期服务器返回的数据类型
 		url: "http://localhost:9090/BicycleSales/"+url+".do" ,//url
+		async:false,
 		xhrFields: {
 			withCredentials: true,
 		},
@@ -73,6 +74,15 @@ function MySubmitString(str,url,callback) {
 		data: {
 			message:str
 		},
+		async:false,
+		beforeSend: function () {
+			$("#load").css('display','block');
+			$("#load1").css('display','block');
+		},
+		complete: function () {
+		    $("#load").remove();
+			$("#load1").remove();
+		},
 		success: function (result) {
 			console.log(result);//打印服务端返回的数据(调试用)
 			callback(result);
@@ -80,6 +90,8 @@ function MySubmitString(str,url,callback) {
 		error : function(error) {
 			console.log(error);
 			alert("我去,网咋还断了！");
+			$("#load").remove();
+			$("#load1").remove();
 		}
 	});
 }
@@ -99,6 +111,7 @@ function MySubmitFormdata(formdate,url,callback) {
 			withCredentials: true,
 		},
 		data: formdate,
+		async:false,
 		processData: false,//必须false才会避开jQuery对 formdata 的默认处理， XMLHttpRequest会对 formdata 进行正确的处理
 		contentType: false,// 告诉jQuery不要去设置Content-Type请求头
 		success: function (result) {
